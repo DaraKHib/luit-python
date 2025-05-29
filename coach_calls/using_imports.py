@@ -5,6 +5,7 @@ import datetime # standard library
 import matplotlib.pyplot as plt
 from rich import print
 from rich.console import Console
+import coach_calls.hello_world as hello_world
 
 # Initialize rich console
 console = Console()
