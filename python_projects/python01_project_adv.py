@@ -3,46 +3,52 @@ import string
 
 def generate_ec2_names() -> None:
     """
-    Prompts the user to input a valid department and the number of EC2 instances they need.
-    Validates that the department is allowed (Marketing, Accounting, FinOps).
-    Then generates and prints unique EC2 names in the format: <department>-<6-char-random-suffix>.
+    Generate unique EC2 instance names for approved departments.
 
-    Restrictions:
-    - Only allows approved departments: Marketing, Accounting, FinOps.
-    - Ensures uniqueness of EC2 instance names using a set.
+    This function prompts the user to input:
+    - A department name (must be one of: Marketing, Accounting, FinOps)
+    - The number of EC2 instance names they need
+
+    It then generates that many unique names in the format:
+    <department>-<6 character random string>
+
+    The names are printed out for the user to use in their AWS environment.
     """
-    # Define allowed departments (converted to lowercase for easy comparison)
-    allowed_departments = {"marketing", "accounting", "finops"}
+    # Set of allowed department names (stored in lowercase for comparison)
+    allowed_departments: set[str] = {"marketing", "accounting", "finops"}
 
-    # Prompt user for department input
-    department: str = input("Enter your department (Marketing, Accounting, FinOps): ").strip().lower()
+    # Prompt user for their department
+    department_input: str = input("Enter your department (Marketing, Accounting, FinOps): ").strip().lower()
 
-    # Validate department
-    if department not in allowed_departments:
-        print("⚠️ Sorry, only Marketing, Accounting, or FinOps departments may use this generator.")
-        return  # Exit the function early if invalid
+    # Check if input is valid
+    if department_input not in allowed_departments:
+        print("⚠️ Sorry, only the Marketing, Accounting, and FinOps departments are allowed to use this tool.")
+        return  # Stop the function if department is not approved
 
-    # Prompt user for number of EC2 instance names to generate
+    # Ask for the number of EC2 instances
     try:
-        num_instances: int = int(input("Enter number of EC2 instances to generate names for: "))
+        num_instances: int = int(input("Enter the number of EC2 instance names you need: "))
     except ValueError:
-        print("❌ Invalid number. Please enter a valid integer.")
+        print("❌ Invalid input. Please enter a valid number.")
         return
 
-    ec2_names: set[str] = set()  # Set to ensure uniqueness
+    # Set to store unique names
+    ec2_names: set[str] = set()
 
-    # Keep generating until we have the required number of unique names
+    # Generate unique names until the set reaches the requested size
     while len(ec2_names) < num_instances:
-        # Generate a random 6-character alphanumeric suffix
+        # Create a random 6-character alphanumeric suffix
         suffix: str = ''.join(random.choices(string.ascii_letters + string.digits, k=6))
-        ec2_name: str = f"{department}-{suffix}"
-        ec2_names.add(ec2_name)  # Add to set (duplicates are automatically ignored)
+        # Format: department-suffix
+        ec2_name: str = f"{department_input}-{suffix}"
+        # Add to the set (ensures uniqueness)
+        ec2_names.add(ec2_name)
 
-    # Output the results
-    print("\n✅ Generated EC2 Instance Names:")
+    # Output the generated EC2 names
+    print("\n✅ Here are your unique EC2 instance names:")
     for name in ec2_names:
         print(name)
 
-# Run the function when the script is executed
+# Execute the function to verify it works
 if __name__ == "__main__":
     generate_ec2_names()
