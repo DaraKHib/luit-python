@@ -14,6 +14,18 @@ console = Console()
 number = random.randint(0, 10)
 print(f"[bold magenta]Your random number is:[/bold magenta] {number}")
 
+# Generate square root using math
+sqrt_number = math.sqrt(number)
+
+# Get current working directory using os
+cws = os.getcwd()
+
+# Get current timestamp using datetime
+timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+# Get "Hello World"
+hello_world = hello_world_for_import.hello_world()
+
 # Create a list of random numbers
 random_numbers = [random.randint(0, 10) for _ in range(10)]
 print("[bold cyan]Here are 10 random numbers:[/bold cyan]", random_numbers)
