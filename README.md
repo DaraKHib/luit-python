@@ -14,9 +14,9 @@ This repository is dedicated to my journey as I dive into Python for the first t
 
 ## 📁 Repository Structure
 
-├── coach_calls/     # Scripts created or discussed during coaching calls
-├── python_course/   # Scripts created during the course
-├── python_projects/ # Scripts created for Python projects
-└── README.md        # Read Me
+- coach_calls: Scripts created or discussed during coaching calls
+- python_course: Scripts created during the course
+- Python_projects: Scripts created for Python projects
+- README.md: Read Me
 
 Feel free to follow along, learn with me, and celebrate the progress—every line of code is a step forward!
