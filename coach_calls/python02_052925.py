@@ -8,14 +8,16 @@ def print_bucket_names(s3_client):
 
 def print_instance_ids(ec2_client):
     instances = describe_instances(ec2_client)
+    
     instance_ids = []
-    for instnace in instances:
-        instance_ids = instance['InstanceId']
+    for instance in instances:
+        instance_ids.append(instance['InstanceId'])
+
     for instance_id in instance_ids:
         print(instance_id)
 
 ec2_client = get_ec2_client()
 s3_client = get_s3_client()
 
-print_bucket_names(s3_client)
+#print_bucket_names(s3_client)
 print_instance_ids(ec2_client)
