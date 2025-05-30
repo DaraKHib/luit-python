@@ -1,32 +1,37 @@
 import os
+from typing import Dict, Optional
 
-def collect_file_data(directory: str = ".") -> dict:
+def get_file_info_dict(path: Optional[str] = None) -> Dict[str, Dict[str, int]]:
     """
-    Recursively collects file information from the given directory.
+    Recursively scans the given path (or current working directory if not specified)
+    and returns a dictionary where each key is the full file path and the value
+    is another dictionary containing details like file size in bytes.
 
     Args:
-        directory (str): The directory to scan. Defaults to current working directory.
+        path (Optional[str]): Directory path to scan. Defaults to the current working directory.
 
     Returns:
-        Dict[str, Dict[str, int]]: A dictionary where each key is a file path (relative to base)
-                                   and each value is a dictionary with file info (e.g., size).
+        Dict[str, Dict[str, int]]: A nested dictionary where each file path maps to its metadata.
     """
-    file_data = {}
-    base_dir = os.path.abspath(directory)
+    if path is None:
+        path = os.getcwd()
 
-    for root, _, files in os.walk(base_dir):
+    file_info_dict = {}
+
+    # Recursively walk through all directories and files
+    for root, _, files in os.walk(path):
         for file in files:
             full_path = os.path.join(root, file)
-            relative_path = os.path.relpath(full_path, start=base_dir)
-            key = os.path.join(os.path.basename(base_dir), relative_path)
-
-            file_data[key] = {
-                'size': os.path.getsize(full_path)
+            file_info_dict[full_path] = {
+                'size': os.path.getsize(full_path)  # Size in bytes
             }
 
-    return file_data
+    return file_info_dict
 
 if __name__ == "__main__":
-    # Example usage
-    files_info = collect_file_data()  # or collect_file_data("/path/to/directory")
-    print(files_info)
+    # Example usage: no path provided, so it defaults to current directory
+    files = get_file_info_dict()
+
+    # Print each file's path and its corresponding info dictionary
+    for path, info in files.items():
+        print(f"{path}: {info}")
