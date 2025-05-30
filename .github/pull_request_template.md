@@ -1,6 +1,6 @@
 # Pull Request
 
-## 📌 Description
+## 📝 Description
 
 Please include a summary of the changes you've made and why they are necessary.
 
@@ -29,10 +29,14 @@ Link any related issue here (if applicable):
 
 Fixes #
 
+## 📸 Screenshots (if applicable)
+
+Include screenshots or videos to help reviewers understand your changes.
+
 ## 🙌 Notes
 
 Anything else you'd like to share or ask for help with?
 
----
 
 💡 *Remember: We’re all learning together. Don’t worry about perfection—just keep making progress!*
+💡 **Tip for Reviewers**: Please focus on code clarity, logic, and potential improvements.
