@@ -2,7 +2,9 @@ from helpers import *
 
 def print_bucket_names(s3_client):
     bucket_names = list_buckets(s3_client)
-    print(bucket_names)
+   
+    for bucket_name in bucket_names:
+        print(bucket_name)
 
 def print_instance_ids(ec2_client):
     instances = describe_instances(ec2_client)
